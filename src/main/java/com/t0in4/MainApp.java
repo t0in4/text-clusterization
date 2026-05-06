@@ -1,8 +1,6 @@
 package com.t0in4;
 
 import dev.langchain4j.data.embedding.Embedding;
-import dev.langchain4j.model.chat.ChatModel;
-import dev.langchain4j.model.chat.StreamingChatModel;
 import dev.langchain4j.model.embedding.EmbeddingModel;
 import dev.langchain4j.model.embedding.onnx.allminilml6v2.AllMiniLmL6V2EmbeddingModel;
 import dev.langchain4j.service.AiServices;
@@ -88,7 +86,7 @@ public class MainApp {
     }
     public static String createSummarize(List<? extends Cluster<ClusterableEmbeddedMessage>> clusters) {
         StringBuilder dataTemplate = new StringBuilder();
-        ChatModel model = new ChatModelConfig().chatLanguageModel();
+        dev.langchain4j.model.chat.ChatModel model = new ChatModel().getInstance();
         SummarizerService summarizerService = AiServices.create(SummarizerService.class, model);
         for (final Cluster<ClusterableEmbeddedMessage> cluster : clusters) {
             final List<ClusterableEmbeddedMessage> clusterPoints = cluster.getPoints();
